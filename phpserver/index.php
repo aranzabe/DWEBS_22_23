@@ -41,8 +41,8 @@
 
 
         // $jsonString ='{
-    //     "nombre":"Olivia",
-    //     "apelllidos":"Mason",
+    //     "nombre":"DAW2",
+    //     "apelllidos":"Virgen de Gracia",
     //     "nacimiento":
     //     {
     //         "anio":"1999",
