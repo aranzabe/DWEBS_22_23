@@ -1,7 +1,7 @@
     <?php
     require_once 'Persona.php';
     //Este ejemplo recoge elementos que se le pasan como json en la petición.
-    // echo($_SERVER['REQUEST_METHOD']).'<br>';
+    //echo($_SERVER['REQUEST_METHOD']).'<br>';
     // echo($_SERVER['REQUEST_URI']).'<br>';
     $datosRecibidos = file_get_contents("php://input");
     //echo $datosRecibidos;
@@ -15,7 +15,7 @@
     //header("Content-Type:application/json");
     //respuesta_entregada(200, "Bienvenida: ".$data['nombre'], $data['apellidos']);
     //respuesta_entregada(202, "Bienvenida: ".$data['nombre'], $data);
-    respuesta_entregada(200, "Bienvenida: ".$data['nombre'], new Persona($data[nombre], $data[apellidos], $data[nacimiento]));
+    respuesta_entregada(200, "Bienvenida: ".$data['nombre'], new Persona($data["nombre"], $data["dni"], $data["telefono"]));
    
     
     function respuesta_entregada($estado, $mensaje_estado, $datos)
