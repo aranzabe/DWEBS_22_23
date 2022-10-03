@@ -15,14 +15,14 @@ and open the template in the editor.
         
         // Utilizando la forma procedimental.
         $conexion = mysqli_connect('localhost', 'fernando', 'Chubaca2018', 'ejemplo');
+        if (!$conexion) {
+            print "Fallo al conectar a MySQL: " . mysqli_connect_error();
+            die();
+        }
+
         print "Conexión realizada de forma procedimental: " . mysqli_get_server_info($conexion) . "<br/>";
         echo '<br>';
-        // if (mysqli_connect_errno($conexion)) {
-        //     print "Fallo al conectar a MySQL: " . mysqli_connect_error();
-        //     die();
-        // }
-            $dni = '1A';
-            echo '<br>';
+        $dni='1A';
         $consulta = "SELECT * FROM personas WHERE DNI = '".$dni."'";echo '<br>';
         echo $consulta;
         echo '<br>';echo '<br>';
@@ -48,21 +48,31 @@ and open the template in the editor.
             mysqli_free_result($resultado);
         }
 
-        
+        //Bind param procedimental.
+        $consulta = "SELECT * FROM personas WHERE DNI = ?";
+        $stmt = mysqli_prepare($conexion, $consulta);
+        $dni = '2B';
+        $clave = 1245;
+        mysqli_stmt_bind_param($stmt, "s", $dni); 
+        mysqli_stmt_execute($stmt);                 
+        $resultados = mysqli_stmt_get_result($stmt);
+        //print_r($resultados);
+        while( $fila = mysqli_fetch_array($resultados)) 
+        {
+            // print_r($fila);
+            print $fila["DNI"] . "," . $fila[1] . "," . $fila[2] . "<br/>";
+        }
         //************* Insertar ************************
         /* Sentencias de preparación de la inserción y de la inserción propiamente. 
            Con esta forma se evitará la inyección de SQL.         */
-    //    $query = "INSERT INTO personas (DNI, Nombre, Tfno) VALUES (?,?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
-    //    $stmt = mysqli_prepare($conexion, $query);
-//
-//        mysqli_stmt_bind_param($stmt, "sss", $val1, $val2, $val3);
-//
-//        $val1 = '101A';
-//        $val2 = 'Un nombre';
-//        $val3 = '32344';
-//
-//        /* Ejecución de la sentencia. */
-//        mysqli_stmt_execute($stmt);
+       $query = "INSERT INTO personas (DNI, Nombre, Tfno) VALUES (?,?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
+       $stmt = mysqli_prepare($conexion, $query);
+       $val1 = '101A';
+       $val2 = 'Un nombre';
+       $val3 = '32344';
+       mysqli_stmt_bind_param($stmt, "sss", $val1, $val2, $val3);
+       /* Ejecución de la sentencia. */
+       mysqli_stmt_execute($stmt);
 //
 //        $val1 = '101B';
 //        $val2 = 'Otro';
