@@ -72,7 +72,12 @@ and open the template in the editor.
        $val3 = '32344';
        mysqli_stmt_bind_param($stmt, "sss", $val1, $val2, $val3);
        /* Ejecución de la sentencia. */
-       mysqli_stmt_execute($stmt);
+       if (mysqli_stmt_execute($stmt)){
+          echo 'Correcto';
+       }
+       else {
+          echo 'Inserción incorrecta';
+       }
 //
 //        $val1 = '101B';
 //        $val2 = 'Otro';
