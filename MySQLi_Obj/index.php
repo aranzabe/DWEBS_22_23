@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
+
         <?php
 
         
         // Utilizando la forma OO.
         try {
-                $conexion = new mysqli('localhost', 'fernando', 'Chubaca2023', 'ejemplo');
+                $conexion = new mysqli('localhost', 'fernando', 'Chubaca2018', 'ejemplo');
         }
         catch (Exception $e){
                 echo "Fallo al conectar a MySQL: (" . $e->getMessage() . ") <br>";
@@ -28,13 +17,13 @@ and open the template in the editor.
         $consulta = "SELECT * FROM personas WHERE DNI = ?";
         $stmt = $conexion->prepare($consulta);
         $dni = '1A';
-        $stmt->bind_param("s", $dni); 
+        $stmt->bind_param("s", $dni);  // mysqli_stmt_bind_param($stmt, "s", $dni);
         $stmt->execute();
         $resultados = $stmt->get_result();
         if ($resultados->num_rows != 0){
             //print_r($resultados);
             //print_r($resultados->fetch_array());
-            while( $fila = $resultados->fetch_array()) 
+            while( $fila = $resultados->fetch_array()) //while( $fila = mysqli_fetch_array($resultados)) 
             {
                 //print_r($fila);
                 print $fila["DNI"] . "," . $fila[1] . "," . $fila[2] . "<br>";
@@ -68,13 +57,10 @@ and open the template in the editor.
        catch (Exception $e){
           echo 'Inserción incorrecta: (Cod: '.$conexion->errno.') --> '.$conexion->error.'<br>';
        }
-
+       
 
        //Dejamos UPDATE y DELETE para 'investigar'...
       
        /* Cerrar la conexión */
        $conexion->close();
        print "Conexión 2 cerrada" . "<br>";
-      ?>
-    </body>
-</html>
