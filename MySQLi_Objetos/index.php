@@ -17,7 +17,7 @@ if (in_array($requestMethod, $verbosParametro)) {
 switch ($requestMethod) {
     case 'GET':
         if (empty($args[1])) {
-            if ($res = Conexion::getPersonaTodas()) {
+            if ($res = Conexion::getPersonaTodas()) {// Cambiar
                 $cod = '200';
                 $desc = 'OK';
                 $mensajeAdicional = ['datos' => $res]; 
@@ -26,7 +26,7 @@ switch ($requestMethod) {
                 $desc = 'Error';
             }
         } else {
-            if ($res = Conexion::getPersona($args[1])) {
+            if ($res = Conexion::getPersona($args[1])) { // Cambiar
                 $cod = '200';
                 $desc = 'OK';
                 $mensajeAdicional = ['datos' => $res]; 
@@ -37,10 +37,10 @@ switch ($requestMethod) {
         }
         break;
 
-    case 'POST':
+    case 'POST': 
         $datosRecibidos = file_get_contents("php://input");
         $datos = json_decode($datosRecibidos, true);
-        if ($res = Conexion::addPersona($datos['dni'], $datos['nombre'], $datos['clave'], $datos['telefono'])) {
+        if ($res = Conexion::addPersona($datos['dni'], $datos['nombre'], $datos['clave'], $datos['telefono'])) {// Cambiar
             $cod = '200';
             $desc = 'OK';
         } else {
@@ -53,7 +53,7 @@ switch ($requestMethod) {
         if (!empty($args[1])) {
             $datosRecibidos = file_get_contents("php://input");
             $datos = json_decode($datosRecibidos, true);
-            if (Conexion::editarPersona($args[1], $datos['nombre'], $datos['clave'], $datos['telefono'])) {
+            if (Conexion::editarPersona($args[1], $datos['nombre'], $datos['clave'], $datos['telefono'])) {// Cambiar
                 $cod = '200';
                 $desc = 'OK';
             } else {
@@ -68,7 +68,7 @@ switch ($requestMethod) {
 
     case 'DELETE':
         if (!empty($args[1])) {
-            if (Conexion::borrarPersona($args[1])) {
+            if (Conexion::borrarPersona($args[1])) {// Cambiar
                 $cod = '200';
                 $desc = 'OK'; 
             } else {
@@ -84,6 +84,7 @@ switch ($requestMethod) {
         $cod = '405';
         $desc = 'Petición incorrecta'; 
 }
+
 header("HTTP/1.1 " . $cod . " " . $desc );
 $mensaje = [
     'cod' => $cod,

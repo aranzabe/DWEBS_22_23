@@ -80,7 +80,7 @@ class Conexion {
         $stmt->bind_param("s", $dni);
         try {
             $stmt->execute();
-            if (mysqli_stmt_affected_rows($stmt) > 0) {
+            if ($stmt->affected_rows > 0) {
                 $borrada = true;
             }
         } catch (Exception $e) {
@@ -100,7 +100,7 @@ class Conexion {
         $stmt->bind_param("ssss", $nombre, $clave, $tfno, $dni);
         try {
             $stmt->execute();
-            if (mysqli_stmt_affected_rows($stmt) > 0) {
+            if ($stmt->affected_rows > 0) {
                 $editada = true;
             }
         } catch (Exception $e) {
