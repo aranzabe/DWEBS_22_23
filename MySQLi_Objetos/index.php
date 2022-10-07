@@ -1,7 +1,8 @@
 <?php
 require_once 'Auxiliar/Conexion.php';
 require_once 'Auxiliar/Parametros.php';
-require_once 'Modelo/Persona.php'; //dir
+require_once 'Modelo/Persona.php'; //DIR
+//cambios para el commit
 
 header("Content-Type:application/json");
 
@@ -16,7 +17,7 @@ if (in_array($requestMethod, $verbosParametro)) {
 
 switch ($requestMethod) {
     case 'GET':
-        if (empty($args[1])) {
+        if (empty($args[1])) { 
             if ($res = Conexion::getPersonaTodas()) {// Cambiar
                 $cod = '200';
                 $desc = 'OK';
