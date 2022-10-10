@@ -27,7 +27,7 @@ class Conexion {
                 $persona = new Persona($fila["DNI"], $fila["Nombre"], $fila["Tfno"]); 
             }         
         } catch (Exception $e) {
-            $persona = ['codigo' => $e->errno, 'mensaje' => $e->error];
+            $persona = ['codigo' => $e->getCode(), 'mensaje' => $e->getMessage()];
         } finally {
             self::$resultado->free_result();
             self::cerrarConexion();
@@ -47,7 +47,7 @@ class Conexion {
                 }
             }
         } catch (Exception $e) {
-            $personas = ['codigo' => $e->errno, 'mensaje' => $e->error];
+            $personas = ['codigo' => $e->getCode(), 'mensaje' => $e->getMessage()];
         } finally {
             self::$resultado->free_result();
             self::cerrarConexion();
@@ -64,7 +64,7 @@ class Conexion {
         try {
             $res = $stmt->execute();
         } catch (Exception $e) {
-            $res = ['codigo' => $e->errno, 'mensaje' => $e->error];
+            $res = ['codigo' => $e->getCode(), 'mensaje' => $e->getMessage()];
         } finally {
             self::cerrarConexion();
         }
@@ -84,7 +84,7 @@ class Conexion {
                 $borrada = true;
             }
         } catch (Exception $e) {
-            $borrada = ['codigo' => $e->errno, 'mensaje' => $e->error];
+            $borrada = ['codigo' => $e->getCode(), 'mensaje' => $e->getMessage()];
         } finally {
             self::cerrarConexion();
         }
@@ -104,7 +104,7 @@ class Conexion {
                 $editada = true;
             }
         } catch (Exception $e) {
-            $editada = ['codigo' => $e->errno, 'mensaje' => $e->error];
+            $editada = ['codigo' => $e->getCode(), 'mensaje' => $e->getMessage()];
         } finally {
             self::cerrarConexion();
         }
