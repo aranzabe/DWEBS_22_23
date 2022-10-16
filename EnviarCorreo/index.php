@@ -16,16 +16,16 @@
             $mail->isSMTP();                                   //Enviar usando SMTP
             $mail->Host       = 'smtp.gmail.com';            //Configurar el servidor SMTP
             $mail->SMTPAuth   = true;                          //Habilitar autenticación SMTP
-            $mail->Username   = 'auxiliardaw2@gmail.com';            //Nombre de usuario SMTP
-            $mail->Password   = 'sjhgtoqxuailkwkr';                      //Contraseña SMTP
+            $mail->Username   = 'correoorigen@loquesea.com';            //Nombre de usuario SMTP
+            $mail->Password   = 'clave del correo';                      //Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;   //Habilitar el cifrado TLS
             $mail->Port       = 465;                           //Puerto TCP al que conectarse; use 587 si configuró `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Emisor
-            $mail->setFrom('auxiliardaw2@gmail.com', 'Fernando Aranzabe');
+            $mail->setFrom('correoorigen@loquesea.com', 'Fernando Aranzabe');
         
             //Destinatarios
-            $mail->addAddress('faranzabe@gmail.com', 'Fernando Usuario Destino');     //Añadir un destinatario, el nombre es opcional
+            $mail->addAddress('correodestino@loquesea.com', 'Fernando Usuario Destino');     //Añadir un destinatario, el nombre es opcional
         
             //Destinatarios opcionales
             // $mail->addReplyTo('info@example.com', 'Information');  //Responder a
