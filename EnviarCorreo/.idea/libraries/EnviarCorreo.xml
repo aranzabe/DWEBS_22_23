@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="EnviarCorreo">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/PHPMailer-master.zip!/" />
+      <root url="jar://$PROJECT_DIR$/sendmail.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
